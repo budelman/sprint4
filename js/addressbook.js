@@ -1,15 +1,13 @@
 (function( $ ) {
-  $.fn.jasonBoomerang = function(options) { //when the functions runs get the options
+  $.fn.jasonBoomerang = function(options) { //runn the function with the settings of "options"
   
-    // Define the default options for the plugin an save them to the "options"
-    var defaults = $.extend({ // extend the plugin by passing these values as default settings or "options"
-      output: "#output",
-      url: "data/contacts.json",
-      queryField: "#q"
+    // Define the default options for the plugin.
+    var defaults = $.extend( { // extend the plugin by passing these values as default settings or "options"
+            output: "#output",
+            url: "data/contacts.json",
+            searchField: "#q"
     }, options); // End the setting of your options
     
-
-
   };
 })( jQuery );
 
