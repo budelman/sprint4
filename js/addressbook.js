@@ -11,13 +11,14 @@
         return this.each (function() { // do this each time the function is called...
         
             /* start the Ajax call */
-            $.getJSON('data/contacts.json', function (data) {
+            $.getJSON(options.url, function (data) {
         
-            // save the input value, contacts length and i to variables
+            // save the input value, contacts length searchField ID, and i to variables
             var addrBook = data.addressBook,
                 count = addrBook.length,
+                searchField = $(options.searchField),
                 i;
-        
+            
             var addr = {
                 
                 search : function(event){
@@ -26,7 +27,7 @@
                     var searchValue = searchField.val().toLowerCase();
                     
                     // empty the output field before we dump things in!
-                    $('#output').empty();
+                    $(options.output).empty();
           
                     // stop the default behavior
                     event.preventDefault();
@@ -44,7 +45,7 @@
                             // anything other than -1 means we found a match
                             if(isItFound !== -1) {
                                 
-                                $('#output').append('<p>' + obj.name + ', <a href="mailto:' + obj.email + '">'+ obj.email +'</a></p>').hide().fadeIn();
+                                $(options.output).append('<p>' + obj.name + ', <a href="mailto:' + obj.email + '">'+ obj.email +'</a></p>').hide().fadeIn();
                                 
                             } // end if
             
