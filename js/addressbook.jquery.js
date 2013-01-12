@@ -1,15 +1,15 @@
 (function( $ ) {
     $.fn.jasonBoomerang = function(options) { // when the function is called use the default "options"
       
-        /* Define the default options for the plugin */
-        var defaults = $.extend( { 
+        /* Define the default options ("settings") for the plugin */
+        var settings = $.extend( { 
                 /* extend the plugin by passing these values as default settings ("options") */
-                output: "#output", // the element where you want to dump the data
-                url: "data/contacts.json", // the place to find the data
-                searchField: "#q" // the ID of the searchfield you are targeting
+                "output" : "#output",           // the element where you want to dump the data
+                "url" : "data/contacts.json",   // the place to find the data
+                "searchField" : "#q"            // the ID of the searchfield you are targeting
         }, options); // End default options
         
-        return this.each (function() { // do this each time the function is called...
+        return this.each (function() { // do this each time the function is called and return it...
         
             /* start the Ajax call */
             $.getJSON(options.url, function (data) {
@@ -20,9 +20,7 @@
                 searchField = $(options.searchField),
                 i;
             
-            var addr = {
-                
-                search : function(event){
+                searchField.keyup (function(event){
                     
                     // take the value of the search field and return it to all lowercase and then set it so we can check it later for content.
                     var searchValue = searchField.val().toLowerCase();
@@ -54,17 +52,12 @@
             
                     } // end count check
             
-                } // end search function
-            
-            }; // end addr object
-            
-            /* activate auto complete on keyUp */
-            $(options.searchField).keyup(function(event) {
-                addr.search(event);
-            }); // end the keyup function
+                }) // end searchField on Keyup function
         
             }); // end the  getJSON Function
         
         }); // close return this.each   
-    }
+        
+    } // End jasonBoomerang Functions
+    
 })( jQuery ); // close the new jQuery Plugin
